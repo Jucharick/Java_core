@@ -1,5 +1,5 @@
 FROM bellsoft/liberica-openjdk-alpine:19
-COPY ./java ./src
+COPY ./java ./tosrc
 RUN mkdir ./out
 RUN javac -sourcepath ./src -d out src/ru/geekbrains/lesson1/sample/Main.java
 CMD java -classpath ./out ru.geekbrains.lesson1.sample.Main
