@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.jucharick.lesson1.regular","l":"Decorator"},{"p":"ru.jucharick.lesson1.sample","l":"Main"},{"p":"ru.jucharick.lesson1.regular","l":"OtherClass"}];updateSearchResults();

@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.jucharick.lesson1.regular"},{"l":"ru.jucharick.lesson1.sample"}];updateSearchResults();
