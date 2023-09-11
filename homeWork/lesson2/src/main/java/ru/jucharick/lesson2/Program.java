@@ -188,16 +188,16 @@ public class Program {
         for (int x = 0; x < fieldSizeX; x++) {
             for (int y = 0; y < fieldSizeY; y++) {
 
-                // Проверка по горизонтали !!
+                // Проверка по горизонтали
                 if (fieldSizeY - y >= WIN_COUNT) {
                     int checkLine = 0;
-                    for (int i = 0; i <= WIN_COUNT; i++) {
+                    for (int i = y; i <= WIN_COUNT; i++) {
                         if (field[x][i] == c) checkLine +=1;
                     }
                     if (checkLine == WIN_COUNT) return true;
                 }
 
-                // Проверка по вертикали !!
+                // Проверка по вертикали
                 if (fieldSizeX - x >= WIN_COUNT) {
                     int checColumn = 0;
                     for (int i = x; i <= WIN_COUNT; i++) {
@@ -215,7 +215,7 @@ public class Program {
                     if (checDiagonalDown == WIN_COUNT) return true;
                 }
 
-                // Проверка по диагонали вверх !!
+                // Проверка по диагонали вверх
                 if (fieldSizeY - y >= WIN_COUNT && fieldSizeX - x >= WIN_COUNT) {
                     int checDiagonalUp = 0;
                     for (int i = x; i <= WIN_COUNT; i++) {
@@ -225,6 +225,21 @@ public class Program {
                 }
             }
         }
+
+//        // Проверка по трем горизонталям
+//        if (field[0][0] == c && field[0][1] == c && field[0][2] == c) return true;
+//        if (field[1][0] == c && field[1][1] == c && field[1][2] == c) return true;
+//        if (field[2][0] == c && field[2][1] == c && field[2][2] == c) return true;
+//
+//        // Проверка по трем вертикалям
+//        if (field[0][0] == c && field[1][0] == c && field[2][0] == c) return true;
+//        if (field[0][1] == c && field[1][1] == c && field[2][1] == c) return true;
+//        if (field[0][2] == c && field[1][2] == c && field[2][2] == c) return true;
+//
+//        // Проверка по диагоналям
+//        if (field[0][0] == c && field[1][1] == c && field[2][2] == c) return true;
+//        if (field[0][2] == c && field[1][1] == c && field[2][0] == c) return true;
+
         return false;
     }
 
