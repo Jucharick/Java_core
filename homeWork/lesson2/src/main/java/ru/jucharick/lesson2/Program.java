@@ -12,8 +12,8 @@ public class Program {
     private static final Scanner scanner = new Scanner(System.in);
     private static final Random random = new Random();
     private static char[][] field; // Двумерный массив хранит текущее состояние игрового поля
-    private static int fieldSizeX = 3; // Размерность игрового поля
-    private static int fieldSizeY = 3; // Размерность игрового поля
+    private static int fieldSizeX = 7; // Размерность игрового поля
+    private static int fieldSizeY = 8; // Размерность игрового поля
 
     public static void main(String[] args) {
         field = new char[fieldSizeY][fieldSizeX];
@@ -61,7 +61,7 @@ public class Program {
      */
     private static void printField(){
         System.out.print("+");
-        for (int x = 0; x < fieldSizeX * 2 + 1; x++){
+        for (int x = 0; x <= fieldSizeX * 2 + 1; x++){
             System.out.print((x % 2 == 0) ? "-" : x / 2 + 1);
         }
         System.out.println();
@@ -94,7 +94,7 @@ public class Program {
 
         do {
             while (true){
-                System.out.printf("Введите координату хода X (от 1 до %d): ", fieldSizeX);
+                System.out.printf("Введите координату хода по вертикали (от 1 до %d): ", fieldSizeX);
                 if (scanner.hasNextInt()){
                     x = scanner.nextInt() - 1;
                     scanner.nextLine();
@@ -106,7 +106,7 @@ public class Program {
                 }
             }
             while (true){
-                System.out.printf("Введите координату хода Y (от 1 до %d): ", fieldSizeX);
+                System.out.printf("Введите координату хода по горизонтали (от 1 до %d): ", fieldSizeY);
                 if (scanner.hasNextInt()){
                     y = scanner.nextInt() - 1;
                     scanner.nextLine();
@@ -120,7 +120,7 @@ public class Program {
         }
 
         while (!isCellValid(x, y) || !isCellEmpty(x, y));
-        field[y][x] = DOT_HUMAN; // меняю местами для того чтобы ось ординат и ось абсцисс были на своих местах
+        field[x][y] = DOT_HUMAN;
     }
 
     /**
@@ -180,36 +180,51 @@ public class Program {
 
     /**
      * Проверка победы
-     * @param c
+     * @param c фишка игрока
      * @return
      */
-    private static boolean checkWin(char c){
-        // Проверка по трем горизонталям
-        if (field[0][0] == c && field[0][1] == c && field[0][2] == c) return true;
-        if (field[1][0] == c && field[1][1] == c && field[1][2] == c) return true;
-        if (field[2][0] == c && field[2][1] == c && field[2][2] == c) return true;
+    private static boolean checkWin(char c) {
 
-        // Проверка по трем вертикалям
-        if (field[0][0] == c && field[1][0] == c && field[2][0] == c) return true;
-        if (field[0][1] == c && field[1][1] == c && field[2][1] == c) return true;
-        if (field[0][2] == c && field[1][2] == c && field[2][2] == c) return true;
+        for (int x = 0; x < fieldSizeX; x++) {
+            for (int y = 0; y < fieldSizeY; y++) {
 
-        // Проверка по диагоналям
-        if (field[0][0] == c && field[1][1] == c && field[2][2] == c) return true;
-        if (field[0][2] == c && field[1][1] == c && field[2][0] == c) return true;
+                // Проверка по горизонтали !!
+                if (fieldSizeY - y >= WIN_COUNT) {
+                    int checkLine = 0;
+                    for (int i = 0; i <= WIN_COUNT; i++) {
+                        if (field[x][i] == c) checkLine +=1;
+                    }
+                    if (checkLine == WIN_COUNT) return true;
+                }
 
-        return false;
-    }
+                // Проверка по вертикали !!
+                if (fieldSizeX - x >= WIN_COUNT) {
+                    int checColumn = 0;
+                    for (int i = x; i <= WIN_COUNT; i++) {
+                        if (field[i][y] == c) checColumn +=1;
+                    }
+                    if (checColumn == WIN_COUNT) return true;
+                }
 
-    private static boolean checkWinV2(char c){
-        for (int x = 0; x < fieldSizeX; x++){
-            for (int y = 0; y < fieldSizeY; y++){
+                // Проверка по диагонали вниз
+                if (fieldSizeX - x >= WIN_COUNT && fieldSizeY - y >= WIN_COUNT) {
+                    int checDiagonalDown = 0;
+                    for (int i = x; i <= WIN_COUNT; i++) {
+                        if (field[i][i] == c) checDiagonalDown +=1;
+                    }
+                    if (checDiagonalDown == WIN_COUNT) return true;
+                }
+
+                // Проверка по диагонали вверх !!
+                if (fieldSizeY - y >= WIN_COUNT && fieldSizeX - x >= WIN_COUNT) {
+                    int checDiagonalUp = 0;
+                    for (int i = x; i <= WIN_COUNT; i++) {
+                        if (field[WIN_COUNT - i][i] == c) checDiagonalUp +=1;
+                    }
+                    if (checDiagonalUp == WIN_COUNT) return true;
+                }
             }
         }
-        return false;
-    }
-
-    static boolean check1(int x, int y, int win){
         return false;
     }
 
