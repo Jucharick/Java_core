@@ -194,6 +194,7 @@ public class Program {
                     for (int i = y; i <= WIN_COUNT; i++) {
                         if (field[x][i] == c) checkLine +=1;
                     }
+
                     if (checkLine == WIN_COUNT) return true;
                 }
 
