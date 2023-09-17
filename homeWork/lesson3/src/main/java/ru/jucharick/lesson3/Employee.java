@@ -14,8 +14,6 @@ public abstract class Employee implements Comparable<Employee>{
     @Override
     public int compareTo(Employee o) {
         return Double.compare(calculateSalary(), o.calculateSalary());
-        //return calculateSalary() == o.calculateSalary() ? 0 :
-        //       calculateSalary() > o.calculateSalary() ? 1 : -1;
     }
 
     @Override
@@ -107,8 +105,10 @@ public abstract class Employee implements Comparable<Employee>{
 
     //region Static Fields
 
-    protected static String[] names = new String[] { "Анатолий", "Глеб", "Клим", "Мартин", "Лазарь", "Владлен", "Клим", "Панкратий", "Рубен", "Герман" };
-    protected static String[] surNames = new String[] { "Григорьев", "Фокин", "Шестаков", "Хохлов", "Шубин", "Бирюков", "Копылов", "Горбунов", "Лыткин", "Соколов" };
+    protected static String[] namesMen = new String[] { "Анатолий", "Глеб", "Клим", "Мартин", "Лазарь", "Владлен", "Клим", "Панкратий", "Рубен", "Герман" };
+    protected static String[] namesWomen = new String[] { "Нинэль", "Татьяна", "Анна", "Катерина", "Любава", "Юлия", "Светлана", "Ольга", "Полина", "Милена" };
+    protected static String[] surNamesMen = new String[] { "Григорьев", "Фокин", "Шестаков", "Хохлов", "Шубин", "Бирюков", "Копылов", "Горбунов", "Лыткин", "Соколов" };
+    protected static String[] surNamesWomen = new String[] { "Иванова", "Гавриш", "Визнер", "Салтыкова", "Беггинс", "Петрова", "Волошаненко", "Понкратова", "Плахотник", "Емельянова" };
     protected static Random random = new Random();
     private static int counter = 1000;
 

@@ -2,7 +2,7 @@ package ru.jucharick.lesson3;
 
 import java.util.ArrayList;
 import java.util.List;
-public class Worker extends Employee{
+public class Worker extends Employee {
 
     private Worker(String surName, String name, double salary){
         super(surName, name, salary);
@@ -11,8 +11,8 @@ public class Worker extends Employee{
 
     public static Employee getInstance(){
         return new Worker(
-                surNames[random.nextInt(surNames.length)],
-                names[random.nextInt(surNames.length)],
+                surNamesMen[random.nextInt(surNamesMen.length)],
+                namesMen[random.nextInt(surNamesMen.length)],
                 random.nextInt(30000, 250000));
     }
 
@@ -31,6 +31,6 @@ public class Worker extends Employee{
     @Override
     public String toString() {
         return String.format("%s %s; Рабочий; Среднемесячная заработная плата (фиксированная месячная оплата): %.2f (руб.)",
-                surName, name, salary);
+                surName, name, calculateSalary());
     }
 }
