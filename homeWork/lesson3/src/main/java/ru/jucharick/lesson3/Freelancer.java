@@ -6,7 +6,7 @@ import java.util.List;
 public class Freelancer extends Employee {
 
     private Freelancer(String surName, String name, double salary){
-        super(surName, name, salary);
+        super(getCountId(), surName, name, salary);
     }
 
     public static Employee getInstance(){
@@ -30,7 +30,7 @@ public class Freelancer extends Employee {
 
     @Override
     public String toString() {
-        return String.format("%s %s; Фрилансер; Среднемесячная заработная плата (почасовая оплата - %.2f (руб/ч)): %.2f (руб.)",
+        return String.format("ID %d, %s %s; Фрилансер; Среднемесячная заработная плата (почасовая оплата - %.2f (руб/ч)): %.2f (руб.)", getId(),
                 surName, name, salary, calculateSalary());
     }
 }

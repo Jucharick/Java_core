@@ -30,21 +30,21 @@ public abstract class Employee implements Comparable<Employee>{
 
     //region Constructors And Initializers
 
-    {
-        //System.out.println("Initialize - Employee");
-        id = ++counter;
-    }
+//    {
+//        //System.out.println("Initialize - Employee");
+//        //id = ++counter;
+//    }
 
     private Employee(){
         this("#Surnane#", "#Name#");
     }
 
     private Employee(String surName, String name){
-        this(surName, name, 500);
+        this(getCountId(),surName, name, 500);
     }
 
-    protected Employee(String surName, String name, double salary){
-        //System.out.println("Constructor - Employee");
+    protected Employee(int id, String surName, String name, double salary){
+        this.id = id;
         if (salary < 500){
             throw new RuntimeException("Ставка заработной платы должна быть не менее 500");
         }
@@ -111,6 +111,14 @@ public abstract class Employee implements Comparable<Employee>{
     protected static String[] surNamesWomen = new String[] { "Иванова", "Гавриш", "Визнер", "Салтыкова", "Беггинс", "Петрова", "Волошаненко", "Понкратова", "Плахотник", "Емельянова" };
     protected static Random random = new Random();
     private static int counter = 1000;
+
+    //endregion
+
+    //region Static Methods
+    public static int getCountId() {
+        counter = counter + 1;
+        return counter;
+    }
 
     //endregion
 }

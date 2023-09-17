@@ -5,8 +5,7 @@ import java.util.List;
 public class Worker extends Employee {
 
     private Worker(String surName, String name, double salary){
-        super(surName, name, salary);
-        //System.out.println("Constructor - Worker");
+        super(getCountId(), surName, name, salary);
     }
 
     public static Employee getInstance(){
@@ -30,7 +29,7 @@ public class Worker extends Employee {
 
     @Override
     public String toString() {
-        return String.format("%s %s; Рабочий; Среднемесячная заработная плата (фиксированная месячная оплата): %.2f (руб.)",
+        return String.format("ID %d, %s %s; Рабочий; Среднемесячная заработная плата (фиксированная месячная оплата): %.2f (руб.)", getId(),
                 surName, name, calculateSalary());
     }
 }

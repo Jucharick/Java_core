@@ -8,7 +8,7 @@ import java.util.Random;
 public class Program {
 
     public static List<Employee> employees = new ArrayList<>();
-    public static int numberOfEmployees  = 15;
+    public static int numberOfEmployees  = 25;
 
     public static void main(String[] args) {
         for (int i = 1; i <= numberOfEmployees; i++) {
