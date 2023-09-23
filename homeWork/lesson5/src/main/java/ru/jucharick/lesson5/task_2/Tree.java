@@ -6,7 +6,6 @@ public class Tree {
     }
 
     /**
-     * TODO: Доработать метод print, необходимо распечатывать директории и файлы
      * @param file
      * @param indent
      * @param isLast
@@ -27,18 +26,10 @@ public class Tree {
         if (files == null)
             return;
 
-        int subDirTotal = 0;
+        int counter = 0;
         for (int i = 0; i < files.length; i++){
-            if (files[i].isDirectory())
-                subDirTotal++;
-        }
-
-        int subDirCounter = 0;
-        for (int i = 0; i < files.length; i++){
-            if (files[i].isDirectory()){
-                subDirCounter++;
-                print(files[i], indent, subDirCounter == subDirTotal);
-            }
+            counter++;
+            print(files[i], indent, counter == files.length);
         }
     }
 }
