@@ -23,7 +23,6 @@ public class Program {
         try {
             Files.createDirectory(Path.of(toDir));
             copy(fromDir, toDir);
-            //copyFolder(fromDir, toDir);
             System.out.println("Backup successfully");
         }
         catch (IOException e){
