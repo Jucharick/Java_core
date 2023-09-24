@@ -21,8 +21,9 @@ public class Program {
 
     private static void backupDir (String fromDir, String toDir) {
         try {
-            Files.createDirectory(Path.of(toDir));
-            copy(fromDir, toDir);
+            //Files.createDirectory(Path.of(toDir));
+            //copy(fromDir, toDir);
+            copyDir(fromDir, toDir);
             System.out.println("Backup successfully");
         }
         catch (IOException e){
@@ -33,15 +34,32 @@ public class Program {
     public static void copy(String fromDir, String toDir) throws IOException{
         try (DirectoryStream<Path> dir = Files.newDirectoryStream(Path.of(fromDir))) {
             for (Path file : dir) {
-                if (file.toString().equals(toDir)) continue;
-                Files.copy(file, Path.of(toDir + file.toString().substring(fromDir.length())));
+                toDir = toDir        +  file.toString().substring(fromDir.length());
+                // .\backup          +  \java\ru
+                // .\backup\java\ru  +  \java\ru\jucharick
+                Files.copy(file, Path.of(toDir));
                 System.out.println(file.toString());
 
-                // запуталась с указанием пути
-//                if (file.toFile().isDirectory()) {
-//                    copy(file.toString(), toDir);
-//                }
+                //запуталась с указанием пути
+                if (Files.isDirectory(file)) {
+                    toDir = toDir  +  file.toString().substring(fromDir.length());
+                    //    .\backup +  \java\ru\
+                    copy(file.toString(), toDir);
+                }
             }
         }
+    }
+
+    public static void copyDir(String fromDir, String toDir) throws IOException {
+        Files.walk(Paths.get(fromDir))
+            .forEach(from -> {
+                Path to = Paths.get(toDir, from.toString()
+                        .substring(fromDir.length()));
+                try {
+                    Files.copy(from, to);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
     }
 }
